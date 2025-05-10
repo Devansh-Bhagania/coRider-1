@@ -1,50 +1,76 @@
-# Welcome to your Expo app 👋
+# CoRider Chat Screen Assignment
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A modern chat interface implementation for the CoRider ride-sharing application, built with React Native and Expo.
 
-## Get started
+## Demo Video
+[Watch Demo Video](./Corider1.mp4)
 
-1. Install dependencies
+## Features
 
-   ```bash
-   npm install
-   ```
+- **Real-time Chat Interface**
+  - Message bubbles with different styles for sender and receiver
+  - Support for multi-line messages
+  - Timestamp display
+  - Avatar support for non-self messages
 
-2. Start the app
+- **Trip Information Display**
+  - Trip name
+  - Source and destination
+  - Group member avatars
+  - Date separator
 
-   ```bash
-   npx expo start
-   ```
+- **Interactive UI Elements**
+  - Floating action pad for media attachments
+  - Message input bar with attachment and send buttons
+  - Overflow menu with options (Members, Share Number, Report)
+  - Back navigation
 
-In the output, you'll find options to open the app in a
+- **Performance Optimizations**
+  - Infinite scroll with pagination
+  - Efficient message rendering
+  - Loading indicators
+  - Smooth scrolling experience
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Tech Stack
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+- React Native
+- Expo
+- React Native Vector Icons
+- Axios for API calls
+- React Native Safe Area Context
 
-## Get a fresh project
+## Setup Instructions
 
-When you're ready, run:
-
+1. Clone the repository:
 ```bash
-npm run reset-project
+git clone https://github.com/Devansh-Bhagania/coRider-1
+cd coRider-1
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+2. Install dependencies:
+```bash
+npm install
+```
 
-## Learn more
+3. Install vector icons:
+```bash
+npm install react-native-vector-icons
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+4. Start the development server:
+```bash
+npx expo start
+```
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## API Integration
 
-## Join the community
+The chat screen integrates with the CoRider API endpoint:
+```
+https://qa.corider.in/assignment/chat
+```
 
-Join our community of developers creating universal apps.
+The API supports pagination with the `page` query parameter.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Contact
+
+Email - devanshbhagania19@gmail.com
