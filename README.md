@@ -1,4 +1,4 @@
-# CoRider Chat Screen Assignment
+# CoRider Chat Screen
 
 A modern chat interface implementation for the CoRider ride-sharing application, built with React Native and Expo.
 
