@@ -1,75 +1,294 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+  Image,
+  TextInput,
+} from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { router } from 'expo-router';
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+const recentRides = [
+  {
+    id: '1',
+    from: 'Delhi',
+    to: 'Jaipur',
+    date: '10 May, 2024',
+    status: 'Completed',
+    price: '₹499',
+  },
+  {
+    id: '2',
+    from: 'Mumbai',
+    to: 'Pune',
+    date: '8 May, 2024',
+    status: 'Completed',
+    price: '₹299',
+  },
+];
+
+const upcomingRides = [
+  {
+    id: '1',
+    from: 'Bangalore',
+    to: 'Chennai',
+    date: '15 May, 2024',
+    time: '10:00 AM',
+    seats: 3,
+    price: '₹799',
+  },
+];
 
 export default function HomeScreen() {
+  const [searchQuery, setSearchQuery] = useState('');
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
+    <SafeAreaView style={styles.safe}>
+      <View style={styles.header}>
+        <View>
+          <Text style={styles.greeting}>Hello,</Text>
+          <Text style={styles.name}>Devansh B</Text>
+        </View>
+        <TouchableOpacity style={styles.profileButton}>
+          <Image
+            source={{ uri: 'https://i.pravatar.cc/100?img=3' }}
+            style={styles.profileImage}
+          />
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.searchContainer}>
+        <Ionicons name="search" size={20} color="#666" style={styles.searchIcon} />
+        <TextInput
+          style={styles.searchInput}
+          placeholder="Where do you want to go?"
+          value={searchQuery}
+          onChangeText={setSearchQuery}
         />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+      </View>
+
+      <ScrollView style={styles.container}>
+        <View style={styles.section}>
+          <View style={styles.sectionHeader}>
+            <Text style={styles.sectionTitle}>Upcoming Rides</Text>
+            <TouchableOpacity>
+              <Text style={styles.seeAll}>See All</Text>
+            </TouchableOpacity>
+          </View>
+          {upcomingRides.map(ride => (
+            <TouchableOpacity
+              key={ride.id}
+              style={styles.rideCard}
+              onPress={() => router.push('/')}
+            >
+              <View style={styles.rideHeader}>
+                <View style={styles.rideLocations}>
+                  <View style={styles.locationDot} />
+                  <View style={styles.locationLine} />
+                  <View style={[styles.locationDot, styles.locationDotEnd]} />
+                </View>
+                <View style={styles.rideDetails}>
+                  <Text style={styles.rideText}>{ride.from}</Text>
+                  <Text style={styles.rideTime}>{ride.time}</Text>
+                  <Text style={styles.rideText}>{ride.to}</Text>
+                </View>
+              </View>
+              <View style={styles.rideFooter}>
+                <View style={styles.rideInfo}>
+                  <Text style={styles.rideDate}>{ride.date}</Text>
+                  <Text style={styles.rideSeats}>{ride.seats} seats left</Text>
+                </View>
+                <Text style={styles.ridePrice}>{ride.price}</Text>
+              </View>
+            </TouchableOpacity>
+          ))}
+        </View>
+
+        <View style={styles.section}>
+          <View style={styles.sectionHeader}>
+            <Text style={styles.sectionTitle}>Recent Rides</Text>
+            <TouchableOpacity>
+              <Text style={styles.seeAll}>See All</Text>
+            </TouchableOpacity>
+          </View>
+          {recentRides.map(ride => (
+            <TouchableOpacity key={ride.id} style={styles.rideCard}>
+              <View style={styles.rideHeader}>
+                <View style={styles.rideLocations}>
+                  <View style={styles.locationDot} />
+                  <View style={styles.locationLine} />
+                  <View style={[styles.locationDot, styles.locationDotEnd]} />
+                </View>
+                <View style={styles.rideDetails}>
+                  <Text style={styles.rideText}>{ride.from}</Text>
+                  <Text style={styles.rideDate}>{ride.date}</Text>
+                  <Text style={styles.rideText}>{ride.to}</Text>
+                </View>
+              </View>
+              <View style={styles.rideFooter}>
+                <Text style={styles.rideStatus}>{ride.status}</Text>
+                <Text style={styles.ridePrice}>{ride.price}</Text>
+              </View>
+            </TouchableOpacity>
+          ))}
+        </View>
+
+      
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
+  safe: {
+    flex: 1,
+    backgroundColor: '#FBFAF6',
+  },
+  header: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    justifyContent: 'space-between',
+    paddingHorizontal: 16,
+    paddingVertical: 12,
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  greeting: {
+    fontSize: 16,
+    color: '#666',
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  name: {
+    fontSize: 24,
+    fontWeight: '700',
+    color: '#20382F',
   },
-});
+  profileButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    overflow: 'hidden',
+  },
+  profileImage: {
+    width: '100%',
+    height: '100%',
+  },
+  searchContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#FFF',
+    marginHorizontal: 16,
+    marginBottom: 16,
+    paddingHorizontal: 12,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#E0E0E0',
+  },
+  searchIcon: {
+    marginRight: 8,
+  },
+  searchInput: {
+    flex: 1,
+    height: 44,
+    fontSize: 16,
+  },
+  container: {
+    flex: 1,
+  },
+  section: {
+    marginBottom: 24,
+  },
+  sectionHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 16,
+    marginBottom: 12,
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#20382F',
+  },
+  seeAll: {
+    fontSize: 14,
+    color: '#006AFF',
+  },
+  rideCard: {
+    backgroundColor: '#FFF',
+    borderRadius: 12,
+    padding: 16,
+    marginHorizontal: 16,
+    marginBottom: 12,
+    borderWidth: 1,
+    borderColor: '#E0E0E0',
+  },
+  rideHeader: {
+    flexDirection: 'row',
+    marginBottom: 12,
+  },
+  rideLocations: {
+    marginRight: 12,
+    alignItems: 'center',
+  },
+  locationDot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: '#006AFF',
+  },
+  locationDotEnd: {
+    backgroundColor: '#FF3B30',
+  },
+  locationLine: {
+    width: 2,
+    height: 40,
+    backgroundColor: '#E0E0E0',
+    marginVertical: 4,
+  },
+  rideDetails: {
+    flex: 1,
+  },
+  rideText: {
+    fontSize: 16,
+    fontWeight: '500',
+    color: '#20382F',
+  },
+  rideTime: {
+    fontSize: 14,
+    color: '#666',
+    marginVertical: 4,
+  },
+  rideDate: {
+    fontSize: 14,
+    color: '#666',
+    marginVertical: 4,
+  },
+  rideFooter: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  rideInfo: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  rideSeats: {
+    fontSize: 14,
+    color: '#666',
+    marginLeft: 8,
+  },
+  rideStatus: {
+    fontSize: 14,
+    color: '#4CAF50',
+  },
+  ridePrice: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#006AFF',
+  },
+ 
+}); 
+
+
