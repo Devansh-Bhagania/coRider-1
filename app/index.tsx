@@ -94,7 +94,7 @@ export default function ChatScreen() {
         {item.verified  &&!item.isMine && (
 
            <Image 
-            source={require('../../assets/verified.png')}
+            source={require('../assets/verified.png')}
             style={{
               position: 'absolute',
               right: 5,
@@ -116,7 +116,15 @@ export default function ChatScreen() {
         shadowRadius: 4,
         shadowOffset: { width: 0, height: 2 },
         borderRadius: 12,
-      }
+      },
+        item.isMine && {
+          shadowColor: '#000',
+        shadowOpacity: 0.05,
+        shadowRadius: 4,
+        elevation: 4,
+        shadowOffset: { width: 0, height: 2 },
+        borderRadius: 12,
+        }
       ]}>
         <Text style={[
           styles.text,
@@ -255,7 +263,8 @@ export default function ChatScreen() {
           <Feather name="paperclip" size={20} color="#20382F" />
         </TouchableOpacity>
         <TouchableOpacity style={styles.sendBtn}>
-          <Feather name="send" size={20} color="#fff" />
+          {/* <Feather name="send" size={20} color="#fff" /> */}
+          <MaterialIcons name="send" size={20} color="black" />
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -267,6 +276,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FAF9F4',
     fontFamily: 'Mulish',
+    paddingBottom: 20
   },
 
   header: {
@@ -293,7 +303,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 56,
     right: 16,
-    width: 160,
+    width: 180,
     backgroundColor: '#fff',
     borderRadius: 8,
     elevation: 4,
@@ -304,7 +314,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingVertical: 10,
-    paddingHorizontal: 12
+    paddingHorizontal: 12,
+    borderBottomColor: '#EEE',
+    borderBottomWidth: 1
   },
 
   menuText: {
@@ -372,12 +384,17 @@ const styles = StyleSheet.create({
 
   bubbleLeft: {
     alignSelf: 'flex-start',
-    backgroundColor: '#FFF',
+    // backgroundColor: '#FFF',
   },
   bubbleRight: {
     alignSelf: 'flex-end',
     backgroundColor: '#1C63D5',
-
+    shadowColor: '#000',
+        shadowOpacity: 0.05,
+        shadowRadius: 4,
+        elevation: 4,
+        shadowOffset: { width: 0, height: 2 },
+        borderRadius: 12,
   },
 
   avatar: {
@@ -401,7 +418,7 @@ const styles = StyleSheet.create({
     bottom: 80,
     right: 16,
     flexDirection: 'row',
-    backgroundColor: '#006AFF',
+    backgroundColor: '#008000',
     borderRadius: 32,
     padding: 4
   },
@@ -411,7 +428,7 @@ const styles = StyleSheet.create({
   },
   inputBar: {
     position: 'absolute',
-    bottom: 0,
+    bottom: 20,
     left: 0,
     right: 0,
     flexDirection: 'row',
@@ -437,7 +454,7 @@ const styles = StyleSheet.create({
     width: 36,
     height: 36,
     borderRadius: 18,
-    backgroundColor: '#006AFF',
+    // backgroundColor: '#006AFF',
     alignItems: 'center',
     justifyContent: 'center'
   },
