@@ -3,7 +3,7 @@
 A modern chat interface implementation for the CoRider ride-sharing application, built with React Native and Expo.
 
 ## Demo Video
-[![IMAGE ALT TEXT]]([http://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE "Video Title")](https://youtube.com/shorts/X2HFuv5iO-8?feature=share)
+[![IMAGE ALT TEXT]]([http://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE "Video Title")](https://www.youtube.com/shorts/i0bNNBEa_5I)
 
 
 
