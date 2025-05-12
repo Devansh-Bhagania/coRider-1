@@ -161,12 +161,6 @@ export default function ChatScreen() {
         <TouchableOpacity onPress={() => { }}>
           <Feather name="edit-3" size={20} color="#20382F" />
         </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => setMenuVisible(true)}
-          style={{ marginLeft: 16 }}
-        >
-          <Feather name="more-vertical" size={20} color="#20382F" />
-        </TouchableOpacity>
       </View>
 
 
@@ -195,7 +189,12 @@ export default function ChatScreen() {
         </View>
       </Modal>
 
-
+          <View style={{
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        paddingRight: 16,
+          }}>
       <View style={styles.tripInfo}>
         <View style={styles.avatars}>
           <Image source={{ uri: 'https://i.pravatar.cc/100?img=17' }} style={styles.avatarSmall} />
@@ -209,8 +208,17 @@ export default function ChatScreen() {
             To   <Text style={{ fontWeight: '700' }}>{tripTo}</Text>
           </Text>
         </View>
-      </View>
 
+
+
+      </View>
+                      <TouchableOpacity
+          onPress={() => setMenuVisible(true)}
+          style={{ marginLeft: 16 }}
+        >
+          <Feather name="more-vertical" size={20} color="#20382F" />
+                </TouchableOpacity>
+</View>
 
       <View style={styles.separator}>
         <View style={styles.line} />
@@ -301,7 +309,7 @@ const styles = StyleSheet.create({
 
   menu: {
     position: 'absolute',
-    top: 56,
+    top: 126,
     right: 16,
     width: 180,
     backgroundColor: '#fff',
