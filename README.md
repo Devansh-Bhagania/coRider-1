@@ -68,7 +68,7 @@ npx expo start
 
 The chat screen integrates with the CoRider API endpoint:
 ```
-https://qa.corider.in/assignment/chat
+https://qa.corider.in/chat
 ```
 
 The API supports pagination with the `page` query parameter.
